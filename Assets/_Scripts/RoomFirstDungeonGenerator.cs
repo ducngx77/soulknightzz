@@ -25,8 +25,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
-    private GameObject bossPrefab;
-    [SerializeField]
+    //private GameObject bossPrefab;
+    //[SerializeField]
     private int Count;
 
     public List<Vector3> centerPos;
@@ -118,7 +118,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
 
         // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
-        Instantiate(bossPrefab, bossPosition, Quaternion.identity);
+        //Instantiate(bossPrefab, bossPosition, Quaternion.identity);
 
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);

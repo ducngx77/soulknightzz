@@ -7,14 +7,23 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
-    guid: e08943ef09c49714c9b3347af83be537
+    guid: 4bf7641b00b4fcb4c9d71871ff9b34e2
   - enabled: 1
-    path: Assets/Scenes/Select Character.unity
+    path: Assets/Scenes/Character Selection.unity
+    guid: 0746eadaaad4b2c4fbf36ea80a4c4498
+  - enabled: 1
+    path: Assets/Scenes/Pet Selection.unity
     guid: 95c46ca07866c2249b615a367c59e2c2
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Boss.unity
+    guid: 999e97a68c2765a4ba22b388f5f4fe71
+  - enabled: 1
     path: Assets/Scenes/Die.unity
     guid: 54d2f8350412f9f42b015e273b5f4669
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: 0ecef1a6b722dfd4da514524380c14b4
   m_configObjects: {}

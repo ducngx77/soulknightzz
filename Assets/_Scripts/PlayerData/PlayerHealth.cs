@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -116,11 +116,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        StartCoroutine(DelayedDeath());
+    }
+
+    IEnumerator DelayedDeath()
+    {
+        
+
+        // Tắt các component và thiết lập isDead
         this.gameObject.GetComponent<PlayerMovent>().enabled = false;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("isDead", true);
 
         Debug.Log("I am Dead!");
+        yield return new WaitForSeconds(5f); // Đợi 5 giây
+        // Load Scene "Die"
         SceneManager.LoadScene("Die");
     }
 }
