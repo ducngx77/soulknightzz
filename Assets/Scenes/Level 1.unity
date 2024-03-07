@@ -595,7 +595,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233395482}
   m_CullTransparentMesh: 1
---- !u!1001 &349899528
+--- !u!1001 &282916438
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -605,19 +605,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
       propertyPath: m_Name
-      value: Boss_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Boss_1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.11
+      value: 1.8143494
       objectReference: {fileID: 0}
     - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.47
+      value: 1.0770607
       objectReference: {fileID: 0}
     - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
       propertyPath: m_LocalPosition.z
@@ -650,10 +646,6 @@ PrefabInstance:
     - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8931950925469920009, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: healthBar
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1363,7 +1355,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 6841240601476041432, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
   enemyPrefab: {fileID: 3162145181620085296, guid: 886838c26348d994d92a993646b27f3d, type: 3}
   bossPrefab: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-  Count: 15
+  Count: 3
   centerPos: []
 --- !u!4 &1208139128
 Transform:
@@ -4285,4 +4277,4 @@ SceneRoots:
   - {fileID: 1805630528}
   - {fileID: 1843019375}
   - {fileID: 111211591}
-  - {fileID: 349899528}
+  - {fileID: 282916438}

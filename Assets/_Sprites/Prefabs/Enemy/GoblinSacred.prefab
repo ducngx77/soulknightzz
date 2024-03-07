@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3162145181620085301}
   - component: {fileID: 3162145181620085300}
   - component: {fileID: 3162145181620085303}
-  - component: {fileID: 3162145181620085302}
   - component: {fileID: 2328281482653376218}
   - component: {fileID: 3712642350982332559}
   - component: {fileID: 1030849284465051201}
+  - component: {fileID: 1275306470948121080}
   m_Layer: 0
   m_Name: GoblinSacred
   m_TagString: Enemy
@@ -117,24 +117,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3162145181620085302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3162145181620085296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 762bdb560ca0f5b488f855c152c05350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 120
-  valueCoin: 3
-  animator: {fileID: 1030849284465051201}
-  popupDamage: {fileID: 3849799127386029438, guid: cc72e012f70e37048bbda65d6afb529f, type: 3}
-  popupText: {fileID: 8977370446546326774, guid: cc72e012f70e37048bbda65d6afb529f, type: 3}
-  coin: {fileID: 3170091749516121871, guid: 436658538fc6b7c45923ae931b6f3efa, type: 3}
 --- !u!114 &2328281482653376218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +199,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1275306470948121080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162145181620085296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b249c9ae9bfd34d856c4d7f0aebf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  valueCoin: 3
+  animator: {fileID: 1030849284465051201}
+  popupDamage: {fileID: 3849799127386029438, guid: cc72e012f70e37048bbda65d6afb529f, type: 3}
+  popupText: {fileID: 8977370446546326774, guid: cc72e012f70e37048bbda65d6afb529f, type: 3}
+  coin: {fileID: 3170091749516121871, guid: 436658538fc6b7c45923ae931b6f3efa, type: 3}
 --- !u!1 &3512271351819524874
 GameObject:
   m_ObjectHideFlags: 0
