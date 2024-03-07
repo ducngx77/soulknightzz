@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 
+
 public class CoinCount : MonoBehaviour
 {
-
-    private int coinNumber = 0;
+    public int coinNumber ;
     [SerializeField]
     public TMP_Text CoinText;
     // Start is called before the first frame update
     void Start()
     {
+        LoadJsonData();
         CoinText = GameObject.Find("CoinCount").GetComponent<TMP_Text>();
     }
 
@@ -19,6 +21,7 @@ public class CoinCount : MonoBehaviour
     void Update()
     {
         CoinText.text = coinNumber.ToString();
+
         Debug.Log(coinNumber.ToString());   
     }
 
@@ -47,4 +50,17 @@ public class CoinCount : MonoBehaviour
         this.coinNumber -= amount;
         CoinText.text = coinNumber.ToString();
     }
+    public void LoadJsonData()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/_Scripts/PlayerData/CoinConfig.json");
+        Coin data = JsonUtility.FromJson<Coin>(json);
+        coinNumber = data.coinValue;
+    }
+    [System.Serializable]
+    public class Coin
+    {
+        public int coinValue;
+
+    }
+
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -6,12 +7,14 @@ using UnityEngine.UI;
 
 public class Finish : MonoBehaviour
 {
+    public CoinCount coinCounter;
     private bool levelComplete = false;
     private RoomFirstDungeonGenerator roomFirstDungeonGenerator;
     public TMP_Text level;
     private int count = 1;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         string objectName = collision.gameObject.name;
         if (!levelComplete && collision.tag == "Player"
             && GameObject.FindGameObjectWithTag("Boss") == null
@@ -19,6 +22,13 @@ public class Finish : MonoBehaviour
         {
             
             levelComplete = true;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+         coinCounter = FindObjectOfType<CoinCount>();
+            int data = coinCounter.coinNumber;
+            
+            Coins c = new Coins(data);
+            string json = JsonUtility.ToJson(c);
+            File.WriteAllText(Application.dataPath + "/_Scripts/PlayerData/CoinConfig.json", json);
             StartCoroutine(ReloadCurrentLevel());
             
         }
@@ -56,5 +66,14 @@ public class Finish : MonoBehaviour
         levelComplete = false; // Đặt lại biến levelComplete để cho phép kích hoạt lại khi qua màn tiếp theo
         Destroy(gameObject);
         
+    }
+    public class Coins
+    {
+        public int coinValue;
+
+        public Coins(int coinValue)
+        {
+            this.coinValue = coinValue;
+        }
     }
 }
