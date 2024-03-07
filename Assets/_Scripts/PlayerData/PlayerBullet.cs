@@ -55,6 +55,10 @@ public class PlayerBullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if(collider.gameObject.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
