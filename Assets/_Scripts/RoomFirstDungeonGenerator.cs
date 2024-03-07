@@ -28,6 +28,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject bossPrefab;
     [SerializeField]
     private int Count;
+    [SerializeField]
+    private List<GameObject> enemys;
 
     public List<Vector3> centerPos;
     protected override void RunProceduralGeneration()
@@ -108,7 +110,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             centerPos.Add(enemyPosition);
 
             // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
-            Instantiate(enemyPrefab , enemyPosition, Quaternion.identity);
+            Instantiate(GetRandomEnemy(), enemyPosition, Quaternion.identity);
 
             // Tăng biến đếm sau khi tạo một quái
             createdEnemyCount++;
@@ -157,6 +159,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         }
         return floor;
+    }
+    GameObject GetRandomEnemy()
+    {
+        int ramdomIndex = Random.Range(0, enemys.Count);
+        return enemys[ramdomIndex];
     }
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)

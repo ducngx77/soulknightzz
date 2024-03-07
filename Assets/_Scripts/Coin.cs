@@ -41,7 +41,7 @@ public class Coin : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
-    {
+   {
         if (collider.gameObject.tag == "Player" && AutoCollect == true)
         {
             CoinCount coinCount = collider.gameObject.GetComponent<CoinCount>();
