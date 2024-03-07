@@ -112,6 +112,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         //// Instantiate enemy prefab at the calculated position (trung tâm của phòng)
         //Instantiate(bossPrefab, bossPosition, Quaternion.identity);
+        // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+        //Instantiate(bossPrefab, bossPosition, Quaternion.identity);
 
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);

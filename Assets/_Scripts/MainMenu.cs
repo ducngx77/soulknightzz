@@ -8,8 +8,12 @@ public class MainMenu : MonoBehaviour
     public SimpleRandomWalkDungeonGenerator dungeonGenerator;
     public void SelectCharacter()
     {
-        SceneManager.LoadScene("Select Character");
+        SceneManager.LoadScene("Character Selection");
         
+    }
+    public void Shop()
+    {
+        SceneManager.LoadScene("Pet Selection");
     }
     public void QuitGame()
     {

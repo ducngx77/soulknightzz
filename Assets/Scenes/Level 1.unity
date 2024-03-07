@@ -1424,24 +1424,14 @@ MonoBehaviour:
   randomWalkParameters: {fileID: 11400000, guid: 9853dded8cd83af488e7322a804d3d77, type: 2}
   minRoomWidth: 10
   minRoomHeight: 10
-  dungeonWidth: 50
+  dungeonWidth: 40
   dungeonHeight: 60
   offset: 2
   randomWalkRooms: 1
   gatePrefab: {fileID: 9168297038248581550, guid: d7384da980d8bbe449d4f2bbc487d34b, type: 3}
   agentPrefab: {fileID: 6841240601476041432, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
   enemyPrefab: {fileID: 3162145181620085296, guid: 886838c26348d994d92a993646b27f3d, type: 3}
-  bossPrefab: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-  EnemyPerRoom: 3
-  enemies:
-  - {fileID: 3162145181620085296, guid: 25be513585bc5fc4a919331f905173ed, type: 3}
-  - {fileID: 3162145181620085296, guid: 886838c26348d994d92a993646b27f3d, type: 3}
-  - {fileID: 3162145181620085296, guid: e318ebd4a20384041aac1db6b69e1eaf, type: 3}
-  - {fileID: 3162145181620085296, guid: 82ef7980c69241d4aa436f115717415c, type: 3}
-  - {fileID: 3162145181620085296, guid: 5f27726bb2ceb56449616ba476bda67e, type: 3}
-  chess:
-  - {fileID: 3654297544131729312, guid: 94755162708e67f4bb0aa1941eba5a52, type: 3}
-  - {fileID: 3654297544131729312, guid: ab5042650d7c8f84c9beb6d8c81af7e6, type: 3}
+  Count: 15
   centerPos: []
 --- !u!4 &1208139128
 Transform:
@@ -1578,7 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 776ce872c4090ce4cb9f80245d5d9ea9, type: 2}
     - target: {fileID: 5633457229944406050, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
       propertyPath: health
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5633457229944406050, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
       propertyPath: healthBar
@@ -4255,13 +4245,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossHealth
       objectReference: {fileID: 0}
-    - target: {fileID: 5538088108327424106, guid: 616f7f608818b1547b99e97a7752361a, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 5435290662689770196, guid: 616f7f608818b1547b99e97a7752361a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5538088108327424106, guid: 616f7f608818b1547b99e97a7752361a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538088108327424106, guid: 616f7f608818b1547b99e97a7752361a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
