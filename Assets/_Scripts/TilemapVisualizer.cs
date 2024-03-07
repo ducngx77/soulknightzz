@@ -47,7 +47,7 @@ public class TilemapVisualizer : MonoBehaviour
         }
         else if (WallTypesHelper.wallFull.Contains(typeAsInt))
         {
-            tile = wallFull;
+            tile = wallFull;  
         }
 
         if (tile!=null)

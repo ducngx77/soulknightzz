@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,11 +17,11 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text popupText;
     private int poisonCount = 0;
     private bool isPoisoning = false;
-
     public GameObject popupDamage;
 
     void Start()
     {
+        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         SetHealth(health);
         animator.SetBool("isDead", false);
         healthBar.SetMaxHealth(health);
@@ -113,7 +114,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        this.gameObject.GetComponent<Movement>().enabled = false;
+        this.gameObject.GetComponent<PlayerMovent>().enabled = false;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetBool("isDead", true);
 

@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Boss
+  - BulletParent
+  - Enemy
+  - Wall
+  - Floor
+  - BossHealthBar
+  - PlayerHealthBar
+  - CoinBar
   layers:
   - Default
   - TransparentFX

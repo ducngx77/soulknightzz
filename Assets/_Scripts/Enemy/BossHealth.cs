@@ -17,6 +17,7 @@ public class BossHealth : MonoBehaviour
     public GameObject coin;
     void Start()
     {
+        healthBar = GameObject.Find("HealthBarBoss").GetComponent<HealthBar>();
         SetHealth(health);
         animator.SetBool("isDead", false);
         healthBar.SetMaxHealth(health);

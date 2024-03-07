@@ -7,10 +7,12 @@ public class CoinCount : MonoBehaviour
 {
 
     private int coinNumber = 0;
+    [SerializeField]
     public TMP_Text CoinText;
     // Start is called before the first frame update
     void Start()
     {
+        CoinText = GameObject.Find("CoinCount").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame

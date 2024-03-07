@@ -176,7 +176,6 @@ MonoBehaviour:
   bullet3: {fileID: 3136877252242372550, guid: 587652a4568241248806df43c6c8a672, type: 3}
   animator: {fileID: 1030849284465051201}
   JumpRate: 10
-  jumpDamage: 15
   fallForce: 2
   jumpHeight: 1
   jumpHitBox: {fileID: 4571247088143618461, guid: 4566ffad3e7842f428066be73910e710, type: 3}
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1cc216364114846af95d9aac669175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 100
   valueCoin: 30
   animator: {fileID: 1030849284465051201}
   popupDamage: {fileID: 3849799127386029438, guid: cc72e012f70e37048bbda65d6afb529f, type: 3}

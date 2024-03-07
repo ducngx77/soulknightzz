@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
@@ -21,26 +24,25 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject agentPrefab;
     [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject bossPrefab;
+    [SerializeField]
+    private int Count;
+
     public List<Vector3> centerPos;
-    [SerializeField] float minSpawnTime;
-    [SerializeField] float maxSpawnTime;
-    private float timeUtilSpawn;
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
+
     }
 
     public void CreateRooms()
     {
-        // Xóa các màn hình và cổng cũ
-        tilemapVisualizer.Clear();
-        Destroy(gateGameObject);
-
-        // Tạo một màn chơi mới
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
 
-        // Tạo phòng và hành lang
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        tilemapVisualizer.Clear();
+        Destroy(gateGameObject);
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomsList);
@@ -49,52 +51,92 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             floor = CreateSimpleRooms(roomsList);
         }
+
         List<Vector2Int> roomCenters = new List<Vector2Int>();
+        int countRoom = roomsList.Count;
+
+        Vector2Int firstRoomCenter = Vector2Int.zero;
         Vector2Int lastRoomCenter = Vector2Int.zero;
+        int createdEnemyCount = 0; // Biến đếm số lượng quái đã tạo
+
+        //foreach (var room in roomsList)
+        //{
+        //    roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
+        //    if (firstRoomCenter == Vector2Int.zero)
+        //    {
+        //        firstRoomCenter = (Vector2Int)Vector3Int.RoundToInt(room.center);
+        //    }
+
+        //    // Kiểm tra xem đã tạo đủ số lượng quái chưa
+        //    if (createdEnemyCount >= Count)
+        //        break; // Thoát khỏi vòng lặp nếu đã tạo đủ
+
+        //    // Tính toán vị trí trung tâm của phòng
+        //    Vector3 enemyPosition = new Vector3(room.center.x, room.center.y, 0);
+        //    centerPos.Add(enemyPosition);
+
+        //    // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+        //    Instantiate(enemyPrehaf, enemyPosition, Quaternion.identity);
+
+        //    // Tăng biến đếm sau khi tạo một quái
+        //    createdEnemyCount++;
+        //}
         for (int i = 0; i < roomsList.Count; i++)
         {
-            var room = roomsList[i];
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-            if (i == roomsList.Count - 1)
+            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(roomsList[i].center));
+            if (firstRoomCenter == Vector2Int.zero)
             {
-                lastRoomCenter = (Vector2Int)Vector3Int.RoundToInt(room.center);
+                firstRoomCenter = (Vector2Int)Vector3Int.RoundToInt(roomsList[0].center);
+                //agentPrefab.transform.position = new Vector3(firstRoomCenter.x, firstRoomCenter.y, 0);
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                player.transform.position = new Vector3(firstRoomCenter.x, firstRoomCenter.y, 0);
             }
+            if (i == roomsList.Count - 1) // Nếu đây là phòng cuối cùng
+            {
+                lastRoomCenter = (Vector2Int)Vector3Int.RoundToInt(roomsList[i].center); // Lưu tâm của phòng cuối cùng
+          //    gatePrefab.transform.position = new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0);
+                Instantiate(gatePrefab, new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0), Quaternion.identity);
+            }
+
+
+            // Kiểm tra xem đã tạo đủ số lượng quái chưa
+            if (createdEnemyCount >= Count)
+                break; // Thoát khỏi vòng lặp nếu đã tạo đủ
+
+            // Tính toán vị trí trung tâm của phòng
+            Vector3 enemyPosition = new Vector3(roomsList[i].center.x, roomsList[i].center.y, 0);
+            centerPos.Add(enemyPosition);
+
+            // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+            Instantiate(enemyPrefab , enemyPosition, Quaternion.identity);
+
+            // Tăng biến đếm sau khi tạo một quái
+            createdEnemyCount++;
         }
 
-        // Kết nối các phòng với nhau
+        Vector3 bossPosition = new Vector3(roomsList[roomsList.Count - 1].center.x, roomsList[roomsList.Count - 1].center.y, 0);
+
+
+        // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+        Instantiate(bossPrefab, bossPosition, Quaternion.identity);
+
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);
 
-        // Vẽ các ô sàn và tường
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
 
-        Vector2Int firstRoomCenter = Vector2Int.zero; // Lưu tâm của phòng đầu tiên
-        foreach (var room in roomsList)
+        if (gateGameObject != null)
         {
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-            if (firstRoomCenter == Vector2Int.zero) // Nếu chưa gán tâm của phòng đầu tiên
-            {
-                firstRoomCenter = (Vector2Int)Vector3Int.RoundToInt(room.center); // Gán tâm của phòng đầu tiên
-            }
+            Destroy(gateGameObject);
         }
-        // Đặt người chơi tại tâm của phòng đầu tiên
-        agentPrefab.transform.position = new Vector3(firstRoomCenter.x, firstRoomCenter.y, 0);
 
 
-        // Đặt cổng tại tâm của phòng cuối cùng
-        // gateGameObject = Instantiate(gatePrefab, new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0), Quaternion.identity);
-        gatePrefab.transform.position = new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0);
-
-        foreach (var room in roomsList)
-        {
-            // Calculate the position for enemy instantiation (you can adjust this according to your room layout)
-            Vector3 enemyPosition = new Vector3(room.center.x, room.center.y, 0);
-            centerPos.Add(enemyPosition);
-            // Instantiate enemy prefab at the calculated position
-            
-        }
+        // Vector2Int lastRoomCenter = new Vector2Int();
+        // lastRoomCenter.x = (int)roomsList[countRoom - 1].center.x;
+        // lastRoomCenter.y = (int)roomsList[countRoom - 1].center.y;
     }
+
 
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
@@ -112,6 +154,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     floor.Add(position);
                 }
             }
+
         }
         return floor;
     }
@@ -197,38 +240,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         return floor;
     }
-    void Update()
-    {
-        var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
-        List<Vector3> pos = new List<Vector3>();
-        timeUtilSpawn -= Time.deltaTime;
 
 
 
-        if (timeUtilSpawn <= 0f)
-        {
-            foreach (var room in centerPos)
-            {
-                // Calculate the position for enemy instantiation (you can adjust this according to your room layout)
-                Vector3 enemyPosition = new Vector3(room.x, room.y, 0);
-                pos.Add(enemyPosition);
-                // Instantiate enemy prefab at the calculated position
-                Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
-            }
-
-
-            SetTimeUtilSpawn();
-        }
-    }
-
-    private void Awake()
-    {
-        SetTimeUtilSpawn();
-    }
-
-    private void SetTimeUtilSpawn()
-    {
-        timeUtilSpawn = Random.Range(minSpawnTime, maxSpawnTime);
-    }
 }

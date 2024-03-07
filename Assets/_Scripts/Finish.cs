@@ -10,7 +10,7 @@ public class Finish : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string objectName = collision.gameObject.name;
-        if (!levelComplete )
+        if (!levelComplete && collision.tag == "Player")
         {
             levelComplete = true;
             StartCoroutine(ReloadCurrentLevel());
@@ -44,5 +44,6 @@ public class Finish : MonoBehaviour
         }
 
         levelComplete = false; // Đặt lại biến levelComplete để cho phép kích hoạt lại khi qua màn tiếp theo
+        Destroy(gameObject);
     }
 }

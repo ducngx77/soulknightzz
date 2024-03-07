@@ -45,6 +45,7 @@ public class Bullet : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
+
         if (collider.gameObject.tag == "Wall")
         {
             Destroy(this.gameObject);
@@ -55,4 +56,6 @@ public class Bullet : MonoBehaviour
     //{
     //    bulletRB.velocity = new Vector2(direction.x, direction.y);
     //}
+
+
 }
