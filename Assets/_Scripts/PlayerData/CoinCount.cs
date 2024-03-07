@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CoinCount : MonoBehaviour
 {
-    public int coinNumber ;
+    public int coinNumber;
     [SerializeField]
     public TMP_Text CoinText;
     // Start is called before the first frame update
@@ -21,8 +21,6 @@ public class CoinCount : MonoBehaviour
     void Update()
     {
         CoinText.text = coinNumber.ToString();
-
-        Debug.Log(coinNumber.ToString());   
     }
 
     public void CollectCoin(int amount)
@@ -32,7 +30,7 @@ public class CoinCount : MonoBehaviour
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Coin");
         }
-        
+
 
         this.coinNumber += amount;
         CoinText.text = coinNumber.ToString();
@@ -45,7 +43,7 @@ public class CoinCount : MonoBehaviour
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Coin");
         }
-        
+
 
         this.coinNumber -= amount;
         CoinText.text = coinNumber.ToString();

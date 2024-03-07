@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 690b83d8cc99a9c4eb40b51e2b8b93ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74bda273004d6e64a9bc50f57c387061, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7834001959964047002}
   - component: {fileID: 2475294468100231978}
   m_Layer: 0
-  m_Name: Chess_Normal
+  m_Name: Chess_Luxury
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a71ee7241090e42469a9deb0d0049f8a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 33a33b377b6b55a4ca3cbde792194969, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -283,10 +283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoCollect: 1
   animator: {fileID: 7834001959964047002}
-  weaponPrefab1: {fileID: 4132837104502934796, guid: 2c9bccd677dd9aa4bac8e5e1a4e5683c, type: 3}
-  weaponPrefab2: {fileID: 4132837104502934796, guid: 9b3d0e881b7339a4698758d94ee6387d, type: 3}
-  weaponPrefab3: {fileID: 4132837104502934796, guid: f5b0528d07b726a4399a936c85b18d95, type: 3}
-  weaponPrefab4: {fileID: 4132837104502934796, guid: f2918cc7e44587945bb063547ae1a5f2, type: 3}
+  weaponPrefab1: {fileID: 4132837104502934796, guid: 750e05cfac7cfbf4db53ba76e686f70f, type: 3}
+  weaponPrefab2: {fileID: 4132837104502934796, guid: 616d678c006aa2243953bd22e3a0e117, type: 3}
+  weaponPrefab3: {fileID: 4132837104502934796, guid: aecdee926503d36448d63698071854c4, type: 3}
+  weaponPrefab4: {fileID: 4132837104502934796, guid: 597db528701f1e8448bd8f2be7e0f769, type: 3}
 --- !u!1 &4762815927253399186
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: a2d4825dae0ed364c9c4134e70ae22ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 301a12ee34f307542bdcfaa3f9185937, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -444,7 +444,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 747ff5ed31d218342ad3a609e32024d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 80213ada6dead604a8ec56b3e99b00ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -528,7 +528,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 809c808365e1d3543beaf1e908cbacb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08bf78076e0ae4b4492c1d2c9706ae1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

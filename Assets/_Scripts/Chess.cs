@@ -23,7 +23,7 @@ public class Chess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObjects = new GameObject[3];
+        gameObjects = new GameObject[4];
         gameObjects[0] = weaponPrefab1;
         gameObjects[1] = weaponPrefab2;
         gameObjects[2] = weaponPrefab3;

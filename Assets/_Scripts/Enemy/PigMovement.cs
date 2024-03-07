@@ -20,13 +20,14 @@ public class PigMovement : MonoBehaviour
     [SerializeField]
     private float attackRate = 5;
     private float AttackTimeCounter = 1f;
-    private bool isCharging;
+    //private bool isCharging;
     public Animator animator;
     private Transform player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     // Update is called once per frame
@@ -47,12 +48,12 @@ public class PigMovement : MonoBehaviour
                 transform.eulerAngles = new Vector3(0f, 0f, 0f);
             }
 
-            if (distanceFromPlayer < vision && distanceFromPlayer > attackRange && isCharging == false)
+            if (distanceFromPlayer < vision && distanceFromPlayer > attackRange && animator.GetBool("isCharging")  == false)
             {
                 animator.SetBool("isRun", true);
                 Vector3 moveDirection = (player.position - transform.position).normalized;
                 transform.position += moveDirection * speed * Time.deltaTime;
-            } else if (distanceFromPlayer < attackRange && isCharging == false)
+            } else if (distanceFromPlayer < attackRange && animator.GetBool("isCharging") == false)
             {
                 ActivateAllChildren(true);
                 animator.SetBool("isRun", true);
@@ -66,31 +67,10 @@ public class PigMovement : MonoBehaviour
             }
             AttackTimeCounter += Time.deltaTime;
         }
-        Debug.Log(isCharging);
     }
     void ChargAttack()
     {
-        isCharging = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player" && isCharging == false)
-        {
-            PlayerHealth playerhealth = collider.GetComponent<PlayerHealth>();
-            playerhealth.Damage(damage);
-            isCharging = true;
-            ActivateAllChildren(false);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player" && isCharging == false)
-        {
-            isCharging = true;
-            ActivateAllChildren(false);
-        }
+        animator.SetBool("isCharging", false);
     }
 
     void ActivateAllChildren(bool activate)

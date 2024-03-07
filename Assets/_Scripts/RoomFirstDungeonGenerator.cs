@@ -11,6 +11,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
     [SerializeField]
+    private int maxRoomWidth = 4, maxRoomHeight = 4;
+    [SerializeField]
     private int dungeonWidth = 20, dungeonHeight = 20;
     [SerializeField]
     [Range(0, 10)]
@@ -27,9 +29,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private GameObject bossPrefab;
     [SerializeField]
-    private int Count;
+    private int EnemyPerRoom;
     [SerializeField]
-    private List<GameObject> enemys;
+    private List<GameObject> enemies;
+    [SerializeField]
+    private List<GameObject> chess;
 
     public List<Vector3> centerPos;
     protected override void RunProceduralGeneration()
@@ -59,68 +63,55 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         Vector2Int firstRoomCenter = Vector2Int.zero;
         Vector2Int lastRoomCenter = Vector2Int.zero;
-        int createdEnemyCount = 0; // Biến đếm số lượng quái đã tạo
-
-        //foreach (var room in roomsList)
-        //{
-        //    roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-        //    if (firstRoomCenter == Vector2Int.zero)
-        //    {
-        //        firstRoomCenter = (Vector2Int)Vector3Int.RoundToInt(room.center);
-        //    }
-
-        //    // Kiểm tra xem đã tạo đủ số lượng quái chưa
-        //    if (createdEnemyCount >= Count)
-        //        break; // Thoát khỏi vòng lặp nếu đã tạo đủ
-
-        //    // Tính toán vị trí trung tâm của phòng
-        //    Vector3 enemyPosition = new Vector3(room.center.x, room.center.y, 0);
-        //    centerPos.Add(enemyPosition);
-
-        //    // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
-        //    Instantiate(enemyPrehaf, enemyPosition, Quaternion.identity);
-
-        //    // Tăng biến đếm sau khi tạo một quái
-        //    createdEnemyCount++;
-        //}
         for (int i = 0; i < roomsList.Count; i++)
         {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(roomsList[i].center));
-            if (firstRoomCenter == Vector2Int.zero)
+            if (i == 0)
             {
                 firstRoomCenter = (Vector2Int)Vector3Int.RoundToInt(roomsList[0].center);
                 //agentPrefab.transform.position = new Vector3(firstRoomCenter.x, firstRoomCenter.y, 0);
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 player.transform.position = new Vector3(firstRoomCenter.x, firstRoomCenter.y, 0);
             }
-            if (i == roomsList.Count - 1) // Nếu đây là phòng cuối cùng
+            else if (i == roomsList.Count - 1) // Nếu đây là phòng cuối cùng
             {
                 lastRoomCenter = (Vector2Int)Vector3Int.RoundToInt(roomsList[i].center); // Lưu tâm của phòng cuối cùng
-          //    gatePrefab.transform.position = new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0);
+                                                                                         //    gatePrefab.transform.position = new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0);
                 Instantiate(gatePrefab, new Vector3(lastRoomCenter.x, lastRoomCenter.y, 0), Quaternion.identity);
+            }
+            else if (i == roomsList.Count - 2)  // Nếu đây là phòng kế cuối
+            {
+                // Tính toán vị trí trung tâm của phòng
+
+                Vector3 chessPosition = new Vector3(roomsList[i].center.x, roomsList[i].center.y, 0);
+                centerPos.Add(chessPosition);
+
+                // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+                Instantiate(GetRandomChess(), chessPosition, Quaternion.identity);
+            }
+            else  // Nếu đây là phòng bth
+            {
+                for (int j = 0; j < EnemyPerRoom; j++)
+                {
+                    // Tính toán vị trí trung tâm của phòng
+                    Vector2 randomOffset = Random.insideUnitCircle * 3f;
+                    Vector3 enemyPosition = new Vector3(roomsList[i].center.x, roomsList[i].center.y, 0) + new Vector3(randomOffset.x, randomOffset.y, 0);
+                    centerPos.Add(enemyPosition);
+
+                    // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+                    Instantiate(GetRandomEnemy(), enemyPosition, Quaternion.identity);
+                }
             }
 
 
-            // Kiểm tra xem đã tạo đủ số lượng quái chưa
-            if (createdEnemyCount >= Count)
-                break; // Thoát khỏi vòng lặp nếu đã tạo đủ
 
-            // Tính toán vị trí trung tâm của phòng
-            Vector3 enemyPosition = new Vector3(roomsList[i].center.x, roomsList[i].center.y, 0);
-            centerPos.Add(enemyPosition);
-
-            // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
-            Instantiate(GetRandomEnemy(), enemyPosition, Quaternion.identity);
-
-            // Tăng biến đếm sau khi tạo một quái
-            createdEnemyCount++;
         }
 
-        Vector3 bossPosition = new Vector3(roomsList[roomsList.Count - 1].center.x, roomsList[roomsList.Count - 1].center.y, 0);
+        //Vector3 bossPosition = new Vector3(roomsList[roomsList.Count - 1].center.x, roomsList[roomsList.Count - 1].center.y, 0);
 
 
-        // Instantiate enemy prefab at the calculated position (trung tâm của phòng)
-        Instantiate(bossPrefab, bossPosition, Quaternion.identity);
+        //// Instantiate enemy prefab at the calculated position (trung tâm của phòng)
+        //Instantiate(bossPrefab, bossPosition, Quaternion.identity);
 
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);
@@ -132,14 +123,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             Destroy(gateGameObject);
         }
-
-
-        // Vector2Int lastRoomCenter = new Vector2Int();
-        // lastRoomCenter.x = (int)roomsList[countRoom - 1].center.x;
-        // lastRoomCenter.y = (int)roomsList[countRoom - 1].center.y;
     }
-
-
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
     {
@@ -162,8 +146,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     }
     GameObject GetRandomEnemy()
     {
-        int ramdomIndex = Random.Range(0, enemys.Count);
-        return enemys[ramdomIndex];
+        int ramdomIndex = Random.Range(0, enemies.Count);
+        return enemies[ramdomIndex];
+    }
+
+    GameObject GetRandomChess()
+    {
+        int ramdomIndex = Random.Range(0, chess.Count);
+        return chess[ramdomIndex];
     }
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)

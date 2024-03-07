@@ -729,63 +729,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341891163}
   m_CullTransparentMesh: 1
---- !u!1001 &349899528
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_Name
-      value: Boss_1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.8143494
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0770607
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3162145181620085301, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
 --- !u!1 &441240831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,15 +1424,24 @@ MonoBehaviour:
   randomWalkParameters: {fileID: 11400000, guid: 9853dded8cd83af488e7322a804d3d77, type: 2}
   minRoomWidth: 10
   minRoomHeight: 10
-  dungeonWidth: 70
-  dungeonHeight: 70
+  dungeonWidth: 50
+  dungeonHeight: 60
   offset: 2
   randomWalkRooms: 1
   gatePrefab: {fileID: 9168297038248581550, guid: d7384da980d8bbe449d4f2bbc487d34b, type: 3}
   agentPrefab: {fileID: 6841240601476041432, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
   enemyPrefab: {fileID: 3162145181620085296, guid: 886838c26348d994d92a993646b27f3d, type: 3}
   bossPrefab: {fileID: 3162145181620085296, guid: 5178bcded97bded4b83ed5c2170e0f71, type: 3}
-  Count: 3
+  EnemyPerRoom: 3
+  enemies:
+  - {fileID: 3162145181620085296, guid: 25be513585bc5fc4a919331f905173ed, type: 3}
+  - {fileID: 3162145181620085296, guid: 886838c26348d994d92a993646b27f3d, type: 3}
+  - {fileID: 3162145181620085296, guid: e318ebd4a20384041aac1db6b69e1eaf, type: 3}
+  - {fileID: 3162145181620085296, guid: 82ef7980c69241d4aa436f115717415c, type: 3}
+  - {fileID: 3162145181620085296, guid: 5f27726bb2ceb56449616ba476bda67e, type: 3}
+  chess:
+  - {fileID: 3654297544131729312, guid: 94755162708e67f4bb0aa1941eba5a52, type: 3}
+  - {fileID: 3654297544131729312, guid: ab5042650d7c8f84c9beb6d8c81af7e6, type: 3}
   centerPos: []
 --- !u!4 &1208139128
 Transform:
@@ -1626,7 +1578,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 776ce872c4090ce4cb9f80245d5d9ea9, type: 2}
     - target: {fileID: 5633457229944406050, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
       propertyPath: health
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5633457229944406050, guid: cb00b88f44672cf498f8dadef6a7b9fe, type: 3}
       propertyPath: healthBar
@@ -4522,4 +4474,3 @@ SceneRoots:
   - {fileID: 1805630528}
   - {fileID: 1843019375}
   - {fileID: 111211591}
-  - {fileID: 282916438}
