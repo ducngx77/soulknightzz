@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public SimpleRandomWalkDungeonGenerator dungeonGenerator;
-    public void PlayGame()
+    public void SelectCharacter()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Select Character");
+        
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void Play()
+    {
+        SceneManager.LoadScene("Level 1");
+
     }
 }

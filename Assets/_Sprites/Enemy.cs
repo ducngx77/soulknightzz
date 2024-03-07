@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void SetEnemyValues()
     {
-        GetComponent<EnemyHealth>().SetHealth(data.hp);
+        GetComponent<Health>().SetHealth(data.hp, data.hp);
         damage = data.damage;
         speed = data.speed;
     }
@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            if(collider.GetComponent<EnemyHealth>() != null)
+            if(collider.GetComponent<Health>() != null)
             {
-                collider.GetComponent<EnemyHealth>().Damage(damage);
-                this.GetComponent<EnemyHealth>().Damage(10000);
+                collider.GetComponent<Health>().Damage(damage);
+                this.GetComponent<Health>().Damage(10000);
             }
         }
     }

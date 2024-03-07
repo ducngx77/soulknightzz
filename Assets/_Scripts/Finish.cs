@@ -1,29 +1,48 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
     private bool levelComplete = false;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
+    private RoomFirstDungeonGenerator roomFirstDungeonGenerator;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Agent" && !levelComplete) 
+        string objectName = collision.gameObject.name;
+        if (!levelComplete )
         {
             levelComplete = true;
-            CompleteLevel();
+            StartCoroutine(ReloadCurrentLevel());
         }
     }
 
-    private void CompleteLevel()
+    //private bool IsAgent(string objectName)
+    //{
+    //    // Kiểm tra xem tên đối tượng có khớp với mẫu "AgentXX" không
+    //    return Regex.IsMatch(objectName, @"^Agent\d{2}$");
+    //}
+
+    private IEnumerator ReloadCurrentLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return new WaitForSeconds(1f);
+
+        // Tìm và kích hoạt RoomFirstDungeonGenerator trong cảnh hiện tại (Level 1)
+        if (roomFirstDungeonGenerator == null)
+        {
+            roomFirstDungeonGenerator = FindObjectOfType<RoomFirstDungeonGenerator>();
+        }
+
+        if (roomFirstDungeonGenerator != null)
+        {
+            // Reset cảnh hiện tại (Level 1) bằng cách tạo lại bản đồ
+            roomFirstDungeonGenerator.CreateRooms();
+        }
+        else
+        {
+            Debug.LogWarning("Không tìm thấy RoomFirstDungeonGenerator trong cảnh hiện tại (Level 1).");
+        }
+
+        levelComplete = false; // Đặt lại biến levelComplete để cho phép kích hoạt lại khi qua màn tiếp theo
     }
 }

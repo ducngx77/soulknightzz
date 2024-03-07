@@ -275,10 +275,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1555091052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -319, y: -860}
-  m_SizeDelta: {x: 500, y: 200}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -306.5, y: -383}
+  m_SizeDelta: {x: -1651, y: -788}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1223141673
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 13295253}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: SelectCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -662,10 +662,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1555091052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 316.9, y: 93.7}
-  m_SizeDelta: {x: 500, y: 290.2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 333, y: -377}
+  m_SizeDelta: {x: -1670, y: -697.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1881109979
 MonoBehaviour:
