@@ -1,4 +1,0 @@
-repository "Soul Knight V2@CoggiUK@cloud"
-  path "/"
-    smartbranch "/main/duc" changeset "18"              
-     

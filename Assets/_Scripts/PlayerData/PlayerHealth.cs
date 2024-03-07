@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerHealth : MonoBehaviour
@@ -119,5 +121,6 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("isDead", true);
 
         Debug.Log("I am Dead!");
+        SceneManager.LoadScene("Die");
     }
 }
